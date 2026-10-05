@@ -1,0 +1,25 @@
+# macos
+.DS_Store
+
+# vscode
+.vscode/
+
+# venvs
+.venv/
+venv/
+env/
+
+# cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# secrets
+.env
+.env.*
+!.env.example
+
+# temporary files to ignore
+LOG.md
+runs/
+runs
