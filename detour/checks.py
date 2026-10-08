@@ -83,9 +83,10 @@ def run_all(model, tokenizer, prompt, device, seed=0):
     total = sum(letter_p.values())
     probs = {k: v / total for k, v in letter_p.items()}
     answer = max(probs, key=probs.get)
-    rows.append({"check": "compliant_action", "question": text, "expected": ca["expect"][s.rule_type],
-                 "answer": answer, "correct": answer == ca["expect"][s.rule_type],
-                 "p_options": probs, "captured": total})
+    ok = ca["expect"][s.rule_type]
+    rows.append({"check": "compliant_action", "question": text, "expected": ok,
+                 "answer": answer, "correct": answer in ok, "p_mirror": probs["mirror"],
+                 "p_compliant": sum(probs[k] for k in ok), "p_options": probs, "captured": total})
 
     # Test awareness (a number, never a pass/fail)
     lp = _next_logprobs(model, tokenizer, _fork(prompt, q["test_awareness"]["text"]), prompt.tools, device)

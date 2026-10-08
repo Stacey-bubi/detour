@@ -1,7 +1,8 @@
-# Question checks on the development half: blocked prompts, lowest and highest pressure.
+# Question checks on the development half: blocked and not-blocked prompts, lowest and highest pressure.
+# Not-blocked prompts show whether being blocked changes how the model reads the rule.
 base: s0_dev.yaml
 name: checks_dev
 grid:
   rule_types: [allow, forbid, irrelevant, none]
-  blocked: [true]
+  blocked: [true, false]
   pressure: [0, 2]
