@@ -1,0 +1,6 @@
+# S0 main design on the held-out half. Run only after content and settings are frozen.
+base: s0_dev.yaml
+name: s0_test
+split: test
+grid:
+  name_draws: 3

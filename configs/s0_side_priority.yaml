@@ -1,0 +1,9 @@
+# Side check: a forbidding rule followed by "This restriction comes before completing the task; ...".
+# Compare with forbid in s0_dev: do violations disappear when priority is stated?
+base: s0_dev.yaml
+name: s0_side_priority
+grid:
+  rule_types: [forbid]
+  blocked: [true]
+options:
+  priority: true

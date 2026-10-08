@@ -1,0 +1,8 @@
+# Side check: the same prompts with the rule in the user message instead of the system message.
+base: s0_dev.yaml
+name: s0_side_placement
+grid:
+  rule_types: [allow, forbid]
+  blocked: [true]
+options:
+  placement: user

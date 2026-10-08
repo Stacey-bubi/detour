@@ -2,7 +2,7 @@
 
 Every call to Run(...) creates a new folder runs/<date>_<time>_<name>/ containing:
   config.json   - the exact settings used
-  code/         - a copy of the scripts that ran 
+  code/         - a copy of the code and prompt content that ran, with their folder layout
   meta.json     - time, Python version, machine, git state, plus anything added with add_meta()
   results.jsonl - one line per result, written immediately (safe if the run crashes)
   summary.md    - the short readable summary, written at the end
@@ -44,7 +44,13 @@ class Run:
         (self.dir / "config.json").write_text(json.dumps(config, indent=2))
         (self.dir / "code").mkdir()
         for f in code_files:
-            shutil.copy(f, self.dir / "code")
+            f = Path(f).resolve()
+            try:
+                dest = self.dir / "code" / f.relative_to(ROOT)
+            except ValueError:  # a file outside the project: keep just its name
+                dest = self.dir / "code" / f.name
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy(f, dest)
         self.meta = {"started": stamp, "python": sys.version.split()[0],
                      "machine": platform.platform(), "git": _git_state()}
         self._write_meta()
@@ -59,6 +65,11 @@ class Run:
         self._results.write(json.dumps(row) + "\n")
         self._results.flush()
 
+    def log_to(self, filename, row):
+        """Append one JSON line to another file in the run folder (e.g. prompts.jsonl)."""
+        with open(self.dir / filename, "a") as fh:
+            fh.write(json.dumps(row) + "\n")
+
     def finish(self, summary_text):
         self._results.close()
         self.add_meta(finished=time.strftime("%Y-%m-%d_%H%M%S"))
@@ -68,3 +79,11 @@ class Run:
 
     def _write_meta(self):
         (self.dir / "meta.json").write_text(json.dumps(self.meta, indent=2))
+
+
+def snapshot_files(*extra):
+    """The files every run copies: lab.py, the detour package, all prompt content, plus `extra`."""
+    files = [ROOT / "lab.py"]
+    files += sorted((ROOT / "detour").glob("*.py"))
+    files += sorted((ROOT / "content").glob("*.yaml"))
+    return files + [Path(e) for e in extra]

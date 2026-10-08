@@ -1,0 +1,7 @@
+# Question checks on the development half: blocked prompts, lowest and highest pressure.
+base: s0_dev.yaml
+name: checks_dev
+grid:
+  rule_types: [allow, forbid, irrelevant, none]
+  blocked: [true]
+  pressure: [0, 2]
