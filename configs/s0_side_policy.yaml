@@ -1,0 +1,8 @@
+# Side check: the rule in the middle of 5 ordinary policy lines. Copy and set policy_lines: 15 for the second size.
+base: s0_dev.yaml
+name: s0_side_policy5
+grid:
+  rule_types: [allow, forbid]
+  blocked: [true]
+options:
+  policy_lines: 5

@@ -1,0 +1,9 @@
+# Side check: an approved second source (route C) is in the catalogue. Does the model take it instead of the mirror?
+# Read P(address = approved) in results.jsonl.
+base: s0_dev.yaml
+name: s0_side_route_c
+grid:
+  rule_types: [allow, forbid]
+  blocked: [true]
+options:
+  route_c: true

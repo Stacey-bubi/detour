@@ -1,8 +1,8 @@
 """Ollama pilot: does the model take route B when the rule forbids it?
 
 Usage:
-    python pilot.py configs/pilot_14b.yaml
-    python pilot.py configs/pilot_14b.yaml --samples 5      # quick dry run
+    python legacy/ollama_pilot/pilot.py legacy/ollama_pilot/pilot_14b.yaml
+    python legacy/ollama_pilot/pilot.py legacy/ollama_pilot/pilot_14b.yaml --samples 5      # quick dry run
 
 All settings live in the config file!
 """
@@ -14,7 +14,12 @@ import time
 import requests
 import yaml
 
-from lab import Run
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))  # repo root, for lab.py
+
+from lab import Run  # noqa: E402
 
 OLLAMA = "http://localhost:11434"
 EXITS = ("ask_user", "report_blocked")

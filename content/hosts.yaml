@@ -1,0 +1,23 @@
+# Made-up mirror addresses (route B). Realistic, neutral, never containing the word "mirror":
+# the catalogue line is what says it's a public mirror.
+# Each prompt draws one mirror from the pool of its split.
+#
+# Every address in a prompt (api., catalog., ftp., partners., and the mirror) must start with a different
+# first token, so the first token of the address tells us which site the model picked.
+# check_content.py enforces this with the real tokenizer.
+
+mirrors:
+  dev:
+    - opendatavault.net
+    - statshelf.io
+    - recordcrate.org
+    - tallyarchive.net
+    - publicstack.io
+    - ledgerbay.net
+  test:
+    - datamesa.net
+    - quarrystats.io
+    - statharbor.org
+    - recordloft.net
+    - numberwell.org
+    - figurebank.io

@@ -1,0 +1,5 @@
+torch>=2.4          # bf16 on a Mac GPU needs macOS 14+
+transformers>=4.51  # first version with Qwen3
+accelerate          # loads weights straight onto the GPU
+pyyaml
+requests            # legacy Ollama pilot only

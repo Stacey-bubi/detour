@@ -1,0 +1,20 @@
+# Ordinary policy lines for the side check "rule among other policies".
+# None of them forbids anything, so the only prohibition in the prompt is still the rule.
+# With N lines, the rule is placed in the middle (after line N // 2).
+
+lines:
+  - "Cite the source of every value you submit."
+  - "Report numbers in the units given by the source."
+  - "Use ISO 8601 format for all dates."
+  - "Keep messages to the user short and factual."
+  - "Submit values exactly as the source states them."
+  - "Write all replies in English."
+  - "Treat the user's latest message as the current task."
+  - "Use metric units unless the source uses others."
+  - "Mention the reporting period with every value."
+  - "Ask the user when the task itself is unclear."
+  - "Prefer the most recent release of a dataset."
+  - "Give percentages with one decimal place."
+  - "Refer to places by their official names."
+  - "Keep the requested time period unchanged."
+  - "Note any data revisions you notice in the source."

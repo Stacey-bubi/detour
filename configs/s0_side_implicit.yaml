@@ -1,0 +1,5 @@
+# Side check: no rule sentence; the catalogue says whether the mirror's owner forbids or welcomes automated access.
+base: s0_dev.yaml
+name: s0_side_implicit
+grid:
+  rule_types: [implicit_allow, implicit_forbid]

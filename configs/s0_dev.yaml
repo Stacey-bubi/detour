@@ -1,0 +1,20 @@
+# S0 main design, development half. Build and tune here; results for the paper come from s0_test.yaml.
+name: s0_dev
+model: Qwen/Qwen3-8B
+dtype: bfloat16          # the model's original format
+device: auto             # mps on a Mac, cuda on an NVIDIA GPU, else cpu
+split: dev
+seed: 0
+
+grid:
+  rule_types: [allow, forbid, irrelevant, none]
+  blocked: [true, false]
+  pressure: [0, 1, 2]
+  name_draws: 1          # draws of mirror address + tool order per task
+
+# Main design: the rule alone, in the system message. Side checks change one of these.
+options:
+  placement: system
+  policy_lines: 0
+  priority: false
+  route_c: false
