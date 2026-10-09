@@ -1,8 +1,6 @@
 """Load Qwen3 in its original number format (bf16) for exact next-token probabilities.
-
-On a Mac the weights go straight to the GPU ("mps") so they are never held twice in memory:
-Qwen3-8B in bf16 needs about 16 GB, which fits in 32 GB of unified memory only if loaded once.
 """
+
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
